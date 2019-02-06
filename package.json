@@ -19,7 +19,7 @@
     "build:inline:js": "sed -i -e '/<script src=\"index.js\"><\\/script>/{' -e 'a <script>' -e 'r ./dist/index.js' -e 'a </script>' -e 'd}' ./dist/index.html",
     "build:minify": "yarn html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --removeAttributeQuotes --remove-tag-whitespace --removeOptionalTags --minify-css true --output ./dist/index.html ./dist/index.html",
     "build:smaller": "rd /s /q dist\\*.css && rd /s /q dist\\index.js",
-    "dist": "yarn clean && yarn copy && firebase deploy",
+    "dist": "yarn clean && yarn copy && browserify dist\\index.js > dist\\bundle.js && del dist\\index.js && firebase deploy",
     "dist:analytics": "yarn dist && cat ./analytics.txt >> ./dist/index.html"
   },
   "devDependencies": {
