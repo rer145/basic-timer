@@ -51,6 +51,3 @@ const createTimer = (seconds, el) => {
 startServiceWorker();
 startWakeLock();
 startTimers();
-
-
-/*"dist": "yarn clean && yarn copy && yarn build:js && yarn build:sw && yarn build:inline:css && yarn build:inline:js && yarn build:minify && yarn build:smaller",*/

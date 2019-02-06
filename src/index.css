@@ -1,37 +1,46 @@
-@media screen and (max-width: 600px) {
-	.column {
-		width: 100%;
-	}
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
 	background: #ffffff;
 	overflow: hidden;
-}
-
-body {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	flex-direction: column;
+	font-family: san-serif;
 }
 
-body > div.column {
-	flex: 50%;
+.column {
+	float: left;
+	width: 50%;
 	text-align: center;
 }
 
-body > #left {
-	float: left;
+	.column span {
+		margin: 0;
+		position: absolute;	
+		top: 50%;	
+	}
+
+#left-timer  {
+	left: 25%;
+	transform: translate(-50%, -50%);
 }
 
-body > #right {
-	float: right;
+#right-timer {
+	left: 75%;
+	transform: translate(-50%, -50%);
 }
 
-body > .timer {
-	font-size: 12rem;
-	font-family: sans-serif;
-	line-height: 12rem;
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.timer {
+	font-size: 30vh;
 }
