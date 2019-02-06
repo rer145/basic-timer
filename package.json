@@ -1,0 +1,13 @@
+{
+  "name": "iron-oxygen",
+  "version": "1.0.0",
+  "description": "Simple static timer for Iron Oxygen",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/rer145/basic-timer.git",
+    "type": "git"
+  },
+  "author": "Ron Richardson",
+  "license": "MIT",
+  "private": true
+}
