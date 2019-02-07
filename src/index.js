@@ -1,6 +1,6 @@
 'use strict';
 
-const Timer = require('easytimer');
+const T = require('easytimer');
 
 /** @const */
 const appOpts = {
@@ -10,6 +10,10 @@ const appOpts = {
 		right: document.querySelector('#right'),
 		leftTimer: document.querySelector('#left-timer'),
 		rightTimer: document.querySelector('#right-timer'),
+	},
+	timers: {
+		left: false,
+		right: false
 	},
 	watchId: null,
 	wakeLock: null
@@ -32,19 +36,38 @@ const startServiceWorker = () => {
 }
 
 const startTimers = () => {
-	createTimer(60, appOpts.dom.leftTimer);
-	createTimer(30, appOpts.dom.rightTimer);
+	createTimer(60, appOpts.dom.leftTimer, appOpts.dom.left);
+	createTimer(30, appOpts.dom.rightTimer, appOpts.dom.right);
+}
+const toggleTimerBackground = (el) => {
+	//true = show red background
+	//false = show white background
+
+	if (el === appOpts.dom.left) {
+		appOpts.timers.left = !appOpts.timers.left;
+		console.log('left timer: ' + appOpts.timers.left);
+	}
+
+	if (el === appOpts.dom.right) {
+		appOpts.timers.right = !appOpts.timers.right;
+		console.log('right timer: ' + appOpts.timers.right);
+	}
+
+	el.classList.toggle('off');
 }
 
-const createTimer = (seconds, el) => {
-	var timer = new Timer();
+const createTimer = (seconds, el, parent) => {
+	toggleTimerBackground(parent);
+	
+	var timer = new T();
 	timer.start({countdown: true, startValues: {seconds: seconds}});
 	timer.addEventListener('secondsUpdated', function(e) {
 		el.innerHTML = timer.getTimeValues().toString(['minutes', 'seconds']);
     });
     timer.addEventListener('targetAchieved', function(e) {
 		timer.stop();
-		createTimer(seconds, el);
+		//timer = null; //needed?
+		createTimer(seconds, el, parent);
 	});
 }
 
